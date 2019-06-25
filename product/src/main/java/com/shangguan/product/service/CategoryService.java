@@ -4,7 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.shangguan.product.repository.ProductCategory;
+import com.shangguan.product.entity.ProductCategory;
+
 
 @Service
 public interface CategoryService {
