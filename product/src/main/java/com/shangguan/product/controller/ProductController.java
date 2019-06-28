@@ -7,12 +7,15 @@ import java.util.stream.Collectors;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.shangguan.product.VO.ProductInfoVO;
 import com.shangguan.product.VO.ProductVO;
 import com.shangguan.product.VO.ResultVO;
+import com.shangguan.product.dto.CartDTO;
 import com.shangguan.product.entity.ProductCategory;
 import com.shangguan.product.entity.ProductInfo;
 import com.shangguan.product.service.CategoryService;
@@ -72,4 +75,29 @@ public class ProductController {
         return ResultVOUtil.success(productVOList);
 		
 	}
+	
+	
+	/**
+	 * 获取商品列表（给订单服务用的）
+	 * @param productIdList
+	 * @return
+	 */
+	@RequestMapping("/listForOrder")
+    public List<ProductInfo> listForOrder(@RequestParam(value = "productIdList") List<String> productIdList) {
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return productService.findList(productIdList);
+		
+	}
+	
+	@RequestMapping("/decreaseStock")
+	public void decreaseStock(@RequestBody List<CartDTO> cartDTOList) {
+		productService.decreaseStock(cartDTOList);
+	}
+	
+	
+	
 }
