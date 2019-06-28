@@ -1,10 +1,10 @@
-package com.shangguan.exception;
+package com.shangguan.product.exception;
 
 import com.shangguan.product.enums.ResultEnum;
 
-public class ProductException extends RuntimeException{
-	
-	private Integer code;
+public class ProductException extends RuntimeException {
+
+    private Integer code;
 
     public ProductException(Integer code, String message) {
         super(message);
