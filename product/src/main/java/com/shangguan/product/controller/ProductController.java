@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.shangguan.product.VO.ProductInfoVO;
@@ -83,7 +82,7 @@ public class ProductController {
 	 * @return
 	 */
 	@RequestMapping("/listForOrder")
-    public List<ProductInfo> listForOrder(@RequestParam(value = "productIdList") List<String> productIdList) {
+    public List<ProductInfo> listForOrder(@RequestBody List<String> productIdList) {
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
