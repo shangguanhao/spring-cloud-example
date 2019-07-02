@@ -13,9 +13,18 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 @RestController
 @DefaultProperties(defaultFallback = "defaultFallback")
 public class HystrixController {
-
+	
+	//超时设置
+//	@HystrixCommand(commandProperties = {
+//			@HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "3000")
+//	})
+	
+	
 	@HystrixCommand(commandProperties = {
-			@HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "3000")
+	@HystrixProperty(name = "circuitBreaker.enabled", value = "true"),  				//设置熔断
+	@HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "10"),	//请求数达到后才计算
+	@HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "10000"), //休眠时间窗
+	@HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "60"),	//错误率
 	})
 	@RequestMapping("getProductInfoList")
 	public String getProductInfoList() {
